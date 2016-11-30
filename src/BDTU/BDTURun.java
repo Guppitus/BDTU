@@ -14,14 +14,16 @@ public class BDTURun {
 
     public static void main(String[] args) throws IOException {
 
-        String name = "test";
+        String name = "testName";
 
-//        BDTUArchival test = new BDTUArchival("test", "test", 20);
+        BDTUArchival test = new BDTUArchival("test", "test", 20);
+        BDTUArchival secondTest = new BDTUArchival("secondTest", "teststestst", 5000);
 
-//        test.putInArchive(test);
 
-  //      System.out.println(BDTUArchival.archival.toString());
+        test.putInArchive(name,test);
+        test.putInArchive("blah",secondTest);
+        System.out.println(BDTUArchival.archival.toString());
 
-        System.out.println(name);
+
     }
 }

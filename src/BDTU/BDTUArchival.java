@@ -11,15 +11,26 @@ import java.util.HashMap;
  */
 public class BDTUArchival extends BDTUBackUp {
 
-    private String backupName = "test";
+    private String backupName;
 
     static HashMap archival = new HashMap();
 
     public BDTUArchival (String source, String destination, long size){
+
         super(source, destination, size);
+        setName(backupName);
     }
 
-    public void putInArchive(BDTUArchival newArchivalBackup){
+    public void setName(String newBackupName){
+        backupName = newBackupName;
+    }
+
+    public String getName(){
+        return backupName;
+    }
+
+
+    public void putInArchive(String backupName, BDTUArchival newArchivalBackup){
         archival.put(backupName, newArchivalBackup);
     }
 
