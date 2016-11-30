@@ -1,6 +1,8 @@
+package BDTU;
+
 import java.io.File;
 import java.io.IOException;
-import org.apache.commons.io.FileUtils;
+
 
 /**
  * Handles the reading and writing of file backups
@@ -10,7 +12,7 @@ import org.apache.commons.io.FileUtils;
  */
 public class BDTUReadWrite {
 
-    File file1 = FileUtils.getFile("hey");
+
 
 
 

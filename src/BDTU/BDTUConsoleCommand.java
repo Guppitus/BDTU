@@ -1,3 +1,5 @@
+package BDTU;
+
 /**
  * ConsoleCommand handles non GUI interaction with BDTU
  * via command line.
