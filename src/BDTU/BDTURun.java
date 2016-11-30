@@ -2,6 +2,7 @@ package BDTU;
 
 import java.io.IOException;
 
+
 /**
  * Initial Run class for BDTU program
  * Contains Main Function
@@ -14,16 +15,23 @@ public class BDTURun {
 
     public static void main(String[] args) throws IOException {
 
-        String name = "testName";
+        boolean loopy = true;
+        while(loopy) {
 
-        BDTUArchival test = new BDTUArchival("test", "test", 20);
-        BDTUArchival secondTest = new BDTUArchival("secondTest", "teststestst", 5000);
+                String name = BDTUConsoleCommand.readConsole();
+                if (name == "quit") {
+                    loopy = false;
+                }
+
+                BDTUArchival test = new BDTUArchival("test", "test", 20);
+                //BDTUArchival secondTest = new BDTUArchival("secondTest", "teststestst", 5000);
 
 
-        test.putInArchive(name,test);
-        test.putInArchive("blah",secondTest);
-        System.out.println(BDTUArchival.archival.toString());
+                test.putInArchive(name, test);
+               // test.putInArchive("blah", secondTest);
+            System.out.println(BDTUArchival.archival.toString());
 
+        }
 
     }
 }
