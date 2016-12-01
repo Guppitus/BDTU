@@ -1,5 +1,6 @@
 package BDTU;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Date;
  *
  * Created by Seth K. Lunn on 11/30/2016.
  */
-public abstract class BDTUBackUp {
+public abstract class BDTUBackUp implements Serializable {
 
     private String source;
     private String destination;

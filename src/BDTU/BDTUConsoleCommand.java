@@ -10,11 +10,34 @@ import java.util.Scanner;
  */
 public class BDTUConsoleCommand {
 
-    public static String readConsole(){
+    public static String consoleName(){
 
         System.out.println("enter name");
 
         Scanner s = new Scanner(System.in);
+
+        String input = (s.nextLine());
+
+
+        return input;
+    }
+
+    public static String consoleSource() {
+
+        Scanner s = new Scanner(System.in);
+
+        System.out.println("enter source");
+
+        String input = (s.nextLine());
+
+        return input;
+    }
+
+    public static String consoleDestination(){
+
+        Scanner s = new Scanner(System.in);
+
+        System.out.println("enter destination");
 
         String input = (s.nextLine());
 
