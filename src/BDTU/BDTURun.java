@@ -16,12 +16,12 @@ public class BDTURun {
     public static void main(String[] args) throws IOException {
 
         boolean loopy = true;
+
         while(loopy) {
 
                 String name = BDTUConsoleCommand.readConsole();
-                if (name == "quit") {
+                if ( name.equals("quit"))
                     loopy = false;
-                }
 
                 BDTUArchival test = new BDTUArchival("test", "test", 20);
                 //BDTUArchival secondTest = new BDTUArchival("secondTest", "teststestst", 5000);
@@ -29,9 +29,8 @@ public class BDTURun {
 
                 test.putInArchive(name, test);
                // test.putInArchive("blah", secondTest);
-            System.out.println(BDTUArchival.archival.toString());
-
         }
+        System.out.println(BDTUArchival.archival.toString());
 
     }
 }
