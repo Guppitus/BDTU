@@ -14,7 +14,7 @@ import static org.apache.commons.io.FileUtils.*;
  *
  * Created by Seth K. Lunn on 11/30/2016.
  */
-public class BDTUReadWrite {
+public class BDTUWrite {
 
 
     public static void writeArchivalBackup(BDTUArchival archive){
@@ -31,5 +31,17 @@ public class BDTUReadWrite {
 
     }
 
+    public static void writeArchivalRestore(BDTUArchival archive){
+
+        File source = getFile(archive.source);
+        File destination = getFile(archive.destination);
+
+        try{
+            copyDirectory(destination, source);
+            forceDelete(destination);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
 }
