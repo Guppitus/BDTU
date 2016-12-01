@@ -19,7 +19,7 @@ public class BDTUSerialization {
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(archival);
             out.close();
-            System.out.printf("Serialized data is saved in");
+            System.out.println("Serialized data is saved in archive.ser");
 
         } catch (IOException i){
             i.printStackTrace();
@@ -35,12 +35,16 @@ public class BDTUSerialization {
             BDTUArchival.archival = (HashMap) in.readObject();
             in.close();
             fileIn.close();
-        } catch (IOException i)
+            System.out.println("Serialized data loaded from archive.ser");
+        } catch (FileNotFoundException i)
         {
-            i.printStackTrace();
+            System.out.println("No saved data found");
         } catch (ClassNotFoundException c)
         {
             c.printStackTrace();
+        } catch (IOException t)
+        {
+            t.printStackTrace();
         }
     }
 

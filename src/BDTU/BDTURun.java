@@ -23,11 +23,9 @@ public class BDTURun {
                     break;
 
                 BDTUArchival test = new BDTUArchival(BDTUConsoleCommand.consoleSource(), BDTUConsoleCommand.consoleDestination(), 20);
-                //BDTUArchival secondTest = new BDTUArchival("secondTest", "teststestst", 5000);
 
 
                 test.putInArchive(name, test);
-               // test.putInArchive("blah", secondTest);
         }
         System.out.println(BDTUArchival.archival.toString());
         BDTUSerialization.serialize(BDTUArchival.archival);
