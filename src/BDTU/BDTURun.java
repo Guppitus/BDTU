@@ -1,6 +1,9 @@
 package BDTU;
 
+import java.io.File;
 import java.io.IOException;
+
+import static org.apache.commons.io.FileUtils.sizeOfDirectory;
 
 
 /**
@@ -21,11 +24,16 @@ public class BDTURun {
                 String name = BDTUConsoleCommand.consoleName();
                 if ( name.equals("quit"))
                     break;
-
-                BDTUArchival test = new BDTUArchival(BDTUConsoleCommand.consoleSource(), BDTUConsoleCommand.consoleDestination(), 20);
+                String source = "./test";
+                String destination = "./test2";
+                //String destination = BDTUConsoleCommand.consoleDestination();
+                File sourceFile = new File(source);
+                long size = sizeOfDirectory(sourceFile);
+                BDTUArchival test = new BDTUArchival(source, destination, size );
 
 
                 test.putInArchive(name, test);
+                BDTUReadWrite.writeArchivalBackup(test);
         }
         System.out.println(BDTUArchival.archival.toString());
         BDTUSerialization.serialize(BDTUArchival.archival);

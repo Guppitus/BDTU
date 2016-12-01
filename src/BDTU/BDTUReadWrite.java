@@ -2,7 +2,10 @@ package BDTU;
 
 import java.io.File;
 import java.io.IOException;
-import org.apache.commons.io.FileUtils;
+
+
+import static org.apache.commons.io.FileUtils.*;
+
 
 
 /**
@@ -14,7 +17,19 @@ import org.apache.commons.io.FileUtils;
 public class BDTUReadWrite {
 
 
+    public static void writeArchivalBackup(BDTUArchival archive){
 
+        File source = getFile(archive.source);
+        File destination = getFile(archive.destination);
+
+        try{
+            copyDirectory(source,destination);
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
 
 }

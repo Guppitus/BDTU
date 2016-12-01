@@ -34,8 +34,8 @@ public class BDTUArchival extends BDTUBackUp {
         archival.put(backupName, newArchivalBackup);
     }
 
-    public void removeArchive(String backupName){
-//        // TODO: iterate by name and remove from hashmap
+    public void removeFromArchive(String backupName){
+        archival.remove(backupName);
     }
 
 }

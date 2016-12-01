@@ -11,9 +11,9 @@ import java.util.Date;
  */
 public abstract class BDTUBackUp implements Serializable {
 
-    private String source;
-    private String destination;
-    private long size;
+    public String source;
+    public String destination;
+    public long size;
 
 //  TODO 7zip and network
     private boolean encrytpion;
