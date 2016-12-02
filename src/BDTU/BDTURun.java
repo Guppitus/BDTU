@@ -42,8 +42,23 @@ public class BDTURun {
         BDTUSerialization.serialize(BDTUArchival.archivalTable);
     }
 
+    /**
+     * Restore Run method: restores backup file to source file
+     * @param backupName name of backup taken as a String
+     */
     public void restore(String backupName){
 
+        //get backup record from archive hash table
+        BDTUArchival getBackup = (BDTUArchival)BDTUArchival.archivalTable.get(backupName);
+
+        //perform copy and write restoration operation on backup
+        BDTUWrite.writeArchivalRestore(getBackup);
+
+        //remove archive backup record from archive hash table
+        BDTUArchival.removeFromArchive(backupName);
+
+        //update .ser file with updated archive hash table
+        BDTUSerialization.serialize(BDTUArchival.archivalTable);
 
 
     }

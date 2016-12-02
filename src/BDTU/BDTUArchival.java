@@ -61,7 +61,7 @@ public class BDTUArchival extends BDTUBackUp {
      * Removes Backup object from HashMap
      * @param backupName Key : name of backup as String
      */
-    public void removeFromArchive(String backupName){
+    public static void removeFromArchive(String backupName){
         archivalTable.remove(backupName);
     }
 
