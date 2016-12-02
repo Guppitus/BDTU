@@ -55,6 +55,8 @@ public class BDTUArchival extends BDTUBackUp {
         archivalTable.put(backupName, newArchivalBackup);
     }
 
+
+
     /**
      * Removes Backup object from HashMap
      * @param backupName Key : name of backup as String
@@ -78,9 +80,7 @@ public class BDTUArchival extends BDTUBackUp {
         //file paths are not empty
         assert (source.length() > 0);
         assert (destination.length() >0);
-        //file paths are not null
-        assert (source != null);
-        assert (destination!= null);
+
 
         assert (backupName != null);
         assert (backupName.length() > 0);

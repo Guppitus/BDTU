@@ -14,7 +14,39 @@ import static org.apache.commons.io.FileUtils.sizeOfDirectory;
  */
 public class BDTURun {
 
+    /**
+     * Backup run method : backs up source directory to backup directory while
+     *                     creating archive record, storing record in hash table
+     *                     and updating archive.ser
+     * @param backupName backup name taken as a String
+     * @param source source file path taken as a String
+     * @param destination destination filepath taken as a String
+     */
 
+    public void archiveBackup(String backupName, String source, String destination){
+
+        //get source file size
+        File sourceFile = new File(source);
+        long size = sizeOfDirectory(sourceFile);
+
+        //create archive backup record
+        BDTUArchival archiveBackup = new BDTUArchival(source, destination, size);
+
+        //add archive backup record to archive hash table
+        archiveBackup.putInArchive(backupName, archiveBackup);
+
+        //perform copy and write operation on backup
+        BDTUWrite.writeArchivalBackup(archiveBackup);
+
+        //update .ser file with updated archive hash table
+        BDTUSerialization.serialize(BDTUArchival.archivalTable);
+    }
+
+    public void restore(String backupName){
+
+
+
+    }
 
     public static void main(String[] args) throws IOException {
 
