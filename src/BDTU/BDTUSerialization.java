@@ -12,6 +12,10 @@ import java.util.HashMap;
 public class BDTUSerialization {
 
 
+    /**
+     * Serialize Archival Hash Map to .ser file
+     * @param archival HashMap containing archival backup objects.
+     */
     public static void serialize(HashMap archival){
 
         try {
@@ -26,6 +30,9 @@ public class BDTUSerialization {
         }
     }
 
+    /**
+     * Deserialize Archival HashMap saved in .ser file
+     */
     public static void deserialize(){
 
         try

@@ -10,6 +10,10 @@ import java.util.Scanner;
  */
 public class BDTUConsoleCommand {
 
+    /**
+     * reads Backup Name from console
+     * @return String of backup name
+     */
     public static String consoleName(){
 
         System.out.println("enter name");
@@ -22,6 +26,11 @@ public class BDTUConsoleCommand {
         return input;
     }
 
+
+    /**
+     * reads source file path from console
+     * @return source filepath as String
+     */
     public static String consoleSource() {
 
         Scanner s = new Scanner(System.in);
@@ -33,6 +42,10 @@ public class BDTUConsoleCommand {
         return input;
     }
 
+    /**
+     * reads destination file path from console
+     * @return destination filepath as String
+     */
     public static String consoleDestination(){
 
         Scanner s = new Scanner(System.in);
