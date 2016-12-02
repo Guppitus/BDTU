@@ -14,8 +14,8 @@ public class BDTUArchival extends BDTUBackUp {
     /** the name of the backup */
     private String backupName;
 
-    /** HashMap containing all archival backup objects */
-    static HashMap archival = new HashMap();
+    /** HashMap containing all archivalTable backup objects */
+    static HashMap archivalTable = new HashMap();
 
     /** Archival Backup constructor which holds source and destination file paths as strings
      *  and the size of the directory or file being backed up.
@@ -52,7 +52,7 @@ public class BDTUArchival extends BDTUBackUp {
      * @param newArchivalBackup Value: Archival Backup Object
      */
     public void putInArchive(String backupName, BDTUArchival newArchivalBackup){
-        archival.put(backupName, newArchivalBackup);
+        archivalTable.put(backupName, newArchivalBackup);
     }
 
     /**
@@ -60,7 +60,7 @@ public class BDTUArchival extends BDTUBackUp {
      * @param backupName Key : name of backup as String
      */
     public void removeFromArchive(String backupName){
-        archival.remove(backupName);
+        archivalTable.remove(backupName);
     }
 
     /**
@@ -68,8 +68,23 @@ public class BDTUArchival extends BDTUBackUp {
      */
     private void repOK(){
 
+        //size value is within boundaries
         assert (size < Long.MAX_VALUE);
         assert (size >= 0);
+
+        //max file path length
+        assert (source.length() < 32767);
+        assert (destination.length() < 32767);
+        //file paths are not empty
+        assert (source.length() > 0);
+        assert (destination.length() >0);
+        //file paths are not null
+        assert (source != null);
+        assert (destination!= null);
+
+        assert (backupName != null);
+        assert (backupName.length() > 0);
+        assert (backupName.length() < Integer.MAX_VALUE);
 
     }
 }

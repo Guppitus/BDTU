@@ -35,8 +35,8 @@ public class BDTURun {
                 test.putInArchive(name, test);
                 BDTUWrite.writeArchivalBackup(test);
         }
-        System.out.println(BDTUArchival.archival.toString());
-        BDTUSerialization.serialize(BDTUArchival.archival);
+        System.out.println(BDTUArchival.archivalTable.toString());
+        BDTUSerialization.serialize(BDTUArchival.archivalTable);
 
     }
 }

@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 
 /**
- * Handles the storage of archival and Session Data Structures
+ * Handles the storage of archivalTable and Session Data Structures
  *
  * Created by Seth K. Lunn on 11/30/2016.
  */
@@ -14,7 +14,7 @@ public class BDTUSerialization {
 
     /**
      * Serialize Archival Hash Map to .ser file
-     * @param archival HashMap containing archival backup objects.
+     * @param archival HashMap containing archivalTable backup objects.
      */
     public static void serialize(HashMap archival){
 
@@ -39,7 +39,7 @@ public class BDTUSerialization {
         {
             FileInputStream fileIn = new FileInputStream("archive.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            BDTUArchival.archival = (HashMap) in.readObject();
+            BDTUArchival.archivalTable = (HashMap) in.readObject();
             in.close();
             fileIn.close();
             System.out.println("Serialized data loaded from archive.ser");
