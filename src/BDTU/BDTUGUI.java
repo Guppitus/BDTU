@@ -46,15 +46,16 @@ public class BDTUGUI {
         }
 
 
-        public void FileChooser(){
+        public void FolderChooser(){
             JFileChooser jFileChooser = new JFileChooser();
             jFileChooser.setCurrentDirectory(new File("/User/alvinreyes"));
-            int result = jFileChooser.showOpenDialog(new JFrame());
-            if (result == JFileChooser.APPROVE_OPTION) {
-                File selectedFile = jFileChooser.getSelectedFile();
-                System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+            jFileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                int result = jFileChooser.showOpenDialog(new JFrame());
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = jFileChooser.getSelectedFile();
+                    System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+                }
             }
-        }
 
         /**
          *
@@ -137,7 +138,7 @@ public class BDTUGUI {
 
             btnNewButton_2.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    FileChooser();
+                    FolderChooser();
                 }
             });
 
@@ -153,7 +154,7 @@ public class BDTUGUI {
 
             btnNewButton_3.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    FileChooser();
+                    FolderChooser();
                 }
             });
 
