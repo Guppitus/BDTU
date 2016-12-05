@@ -120,7 +120,7 @@ public class BDTUGUI {
             Backup.setLayout(null);
 
             txtNameOfFile = new JTextField();
-            txtNameOfFile.setText("Name of File");
+            txtNameOfFile.setText("Name of Backup");
             txtNameOfFile.setBounds(30, 50, 200, 26);
             Backup.add(txtNameOfFile);
             txtNameOfFile.setColumns(10);
@@ -196,6 +196,9 @@ public class BDTUGUI {
             btnNewButton_1.setBounds(555, 297, 117, 37);
             Backup.add(btnNewButton_1);
 
+            btnNewButton.addActionListener(new RunBackupListener());
+
+
             JPanel panel_1 = new JPanel();
             panel_1.setBackground(Color.WHITE);
             panel_1.setBounds(480, 50, 259, 148);
@@ -211,6 +214,17 @@ public class BDTUGUI {
 
 
         }
+    private class RunBackupListener implements ActionListener{
+
+        String name = txtNameOfFile.getText();
+        String source = txtSourceFolderfile.getText();
+        String destination = txtDestinationFolder.getText();
+        public void actionPerformed(ActionEvent e) {
+            BDTURun.archiveBackup( name, source, destination);
+        }
+
     }
+
+}
 
 

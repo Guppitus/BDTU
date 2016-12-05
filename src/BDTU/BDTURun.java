@@ -23,14 +23,14 @@ public class BDTURun {
      * @param destination destination filepath taken as a String
      */
 
-    public void archiveBackup(String backupName, String source, String destination){
+    public static void archiveBackup(String backupName, String source, String destination){
 
         //get source file size
         File sourceFile = new File(source);
-        long size = sizeOfDirectory(sourceFile);
+       // long size = sizeOfDirectory(sourceFile);
 
         //create archive backup record
-        BDTUArchival archiveBackup = new BDTUArchival(source, destination, size);
+        BDTUArchival archiveBackup = new BDTUArchival(source, destination, 6);
 
         //add archive backup record to archive hash table
         archiveBackup.putInArchive(backupName, archiveBackup);
