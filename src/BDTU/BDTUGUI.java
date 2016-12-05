@@ -157,7 +157,7 @@ public class BDTUGUI {
             Backup.add(txtSourceFolderfile);
             txtSourceFolderfile.setColumns(10);
 
-            JButton btnNewButton_2 = new JButton("");
+            JButton btnNewButton_2 = new JButton("...");
             btnNewButton_2.setBounds(242, 100, 40, 29);
             Backup.add(btnNewButton_2);
 
@@ -176,7 +176,7 @@ public class BDTUGUI {
 
 
 
-            JButton btnNewButton_3 = new JButton("");
+            JButton btnNewButton_3 = new JButton("...");
             btnNewButton_3.setBounds(242, 150, 40, 29);
             Backup.add(btnNewButton_3);
 
@@ -249,6 +249,10 @@ public class BDTUGUI {
 
             public void actionPerformed(ActionEvent e) {
 
+                if(txtNameOfFile.getText().equals("") | txtSourceFolderfile.getText().equals("")
+                        | txtDestinationFolder.getText().equals("") ){
+                    return;
+                }
 
                 String name = txtNameOfFile.getText();
                 String source = txtSourceFolderfile.getText();
