@@ -63,7 +63,7 @@ public class BDTURun {
 
     }
 
-    public static void main(String[] args) throws IOException {
+  /* public static void main(String[] args) throws IOException {
 
         BDTUSerialization.deserialize();
         while(true) {
@@ -86,4 +86,5 @@ public class BDTURun {
         BDTUSerialization.serialize(BDTUArchival.archivalTable);
 
     }
+    */
 }
