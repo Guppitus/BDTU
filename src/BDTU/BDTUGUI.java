@@ -23,6 +23,7 @@ public class BDTUGUI {
         private JTextField txtDestinationFolder;
         private JTable table;
         private JTextField txtLengthOfTime;
+        private JList list;
 
 
         /**
@@ -113,6 +114,15 @@ public class BDTUGUI {
             JPanel Restore = new JPanel();
             tabbedPane.addTab("Restore", null, Restore, null);
             Restore.setLayout(null);
+            JPanel tablePanel = new JPanel();
+
+            tablePanel.setBackground(Color.WHITE);
+
+            tablePanel.setBounds(6, 107, 754, 170);
+
+            Restore.add(tablePanel);
+
+            tablePanel.setLayout(null);
 
             JPanel panel_2 = new JPanel();
             panel_2.setBackground(Color.WHITE);
@@ -124,20 +134,7 @@ public class BDTUGUI {
             lblLogo_1.setBounds(120, 6, 61, 44);
             panel_2.add(lblLogo_1);
 
-            String[] columnNames = {"FileName", "Date", "Type", "Device", "Restore"};
 
-            Object[][] data = {
-                    {"File1", "12/5/16", "Archive", "Mobile", "Restore"},
-                    {"File2", "12/5/16", "Session", "Computer", "Restore"},
-                    {"File3", "12/5/16", "Archive", "Mobile", "Restore"},
-                    {"File4", "12/5/16", "Session", "Tablet", "Restore"},
-            };
-
-            table = new JTable(data, columnNames);
-            table.setPreferredScrollableViewportSize(new Dimension(500, 50));
-            table.setFillsViewportHeight(true);
-            table.setBounds(123, 329, 519, -210);
-            Restore.add(table);
 
             JPanel Backup = new JPanel();
             tabbedPane.addTab("Backup", null, Backup, null);
@@ -243,8 +240,57 @@ public class BDTUGUI {
             JPanel Settings = new JPanel();
             tabbedPane.addTab("Settings", null, Settings, null);
 
+            String[] data = {};
+
+            list = new JList(data);
+            list.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+
+            list.setVisibleRowCount(5);
+            list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+            list.setBounds(154, 16, 444, 148);
+
+            DefaultListCellRenderer renderer = (DefaultListCellRenderer) list.getCellRenderer();
+            renderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+            list.setListData(BDTUArchival.archivalTable.keySet().toArray());
+            System.out.println(list.toString());
+
+            tablePanel.add(list);
+
+            JButton restoreSubmit = new JButton("Restore");
+
+            restoreSubmit.setBounds(322, 289, 117, 45);
+
+            Restore.add(restoreSubmit);
+
+            restoreSubmit.addActionListener(new RestoreListener());
+
+
+            JButton clearRestore = new JButton("Clear/Cancel");
+
+            clearRestore.setBounds(322, 338, 117, 29);
+
+            Restore.add(clearRestore);
+
 
         }
+
+        private class RestoreListener implements ActionListener{
+
+            public void actionPerformed(ActionEvent e) {
+
+                int list2 = list.getSelectedIndex();
+                String restoreName = (String) list.getSelectedValue();
+                BDTURun.restore(restoreName);
+
+                list.remove(list2);
+
+                list.setListData(BDTUArchival.archivalTable.keySet().toArray());
+
+            }
+        }
+
         private class RunBackupListener implements ActionListener{
 
             public void actionPerformed(ActionEvent e) {
@@ -258,6 +304,9 @@ public class BDTUGUI {
                 String source = txtSourceFolderfile.getText();
                 String destination = txtDestinationFolder.getText();
                 BDTURun.archiveBackup(name, source, destination);
+
+                list.setListData(BDTUArchival.archivalTable.keySet().toArray());
+
             }
         }
         private class ClearText implements ActionListener{
