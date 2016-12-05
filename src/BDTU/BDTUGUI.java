@@ -284,8 +284,6 @@ public class BDTUGUI {
                 String restoreName = (String) list.getSelectedValue();
                 BDTURun.restore(restoreName);
 
-                list.remove(list2);
-
                 list.setListData(BDTUArchival.archivalTable.keySet().toArray());
 
             }
