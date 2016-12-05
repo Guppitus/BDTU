@@ -27,16 +27,18 @@ public class BDTURun {
 
         //get source file size
         File sourceFile = new File(source);
-       // long size = sizeOfDirectory(sourceFile);
+        long size = sizeOfDirectory(sourceFile);
 
         //create archive backup record
-        BDTUArchival archiveBackup = new BDTUArchival(source, destination, 6);
+        BDTUArchival archiveBackup = new BDTUArchival(source, destination, size);
 
         //add archive backup record to archive hash table
         archiveBackup.putInArchive(backupName, archiveBackup);
 
         //perform copy and write operation on backup
         BDTUWrite.writeArchivalBackup(archiveBackup);
+
+        System.out.println(BDTUArchival.archivalTable.toString());
 
         //update .ser file with updated archive hash table
         BDTUSerialization.serialize(BDTUArchival.archivalTable);
