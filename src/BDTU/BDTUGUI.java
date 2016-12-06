@@ -7,8 +7,12 @@ import java.awt.event.*;
 import javax.swing.*;
 
 
+
 /**
- * Created by jacklavallee on 12/5/16.
+ * GUI Implementation
+ *
+ * Created by Jack Lavallee, Joe Russel, and Seth K. Lunn on 12/5/16.
+ *
  */
 public class BDTUGUI {
 
@@ -19,12 +23,14 @@ public class BDTUGUI {
         private JTextField txtDestinationFolder;
         private JTable table;
         private JTextField txtLengthOfTime;
+        private JList list;
 
 
         /**
          * Launch the application.
          */
         public static void main(String[] args) {
+            BDTUSerialization.deserialize();
             EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     try {
@@ -35,6 +41,7 @@ public class BDTUGUI {
                     }
                 }
             });
+            BDTUSerialization.serialize(BDTUArchival.archivalTable);
         }
 
 
@@ -46,18 +53,35 @@ public class BDTUGUI {
         }
 
 
-        public void FolderChooser(){
+        public void FolderChooser1(){
+            String source;
             JFileChooser jFileChooser = new JFileChooser();
             jFileChooser.setCurrentDirectory(new File("/User/alvinreyes"));
             jFileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
                 int result = jFileChooser.showOpenDialog(new JFrame());
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File selectedFile = jFileChooser.getSelectedFile();
+                    source = selectedFile.getAbsolutePath();
+                    txtSourceFolderfile.setText(source);
                     System.out.println("Selected file: " + selectedFile.getAbsolutePath());
                 }
             }
+    public void FolderChooser2(){
+        String destination;
+        JFileChooser jFileChooser = new JFileChooser();
+        jFileChooser.setCurrentDirectory(new File("/User/alvinreyes"));
+        jFileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int result = jFileChooser.showOpenDialog(new JFrame());
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = jFileChooser.getSelectedFile();
+            destination = selectedFile.getAbsolutePath();
+            txtDestinationFolder.setText(destination);
+            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+        }
+    }
 
-        /**
+
+    /**
          *
          * @param path
          * @return
@@ -90,6 +114,15 @@ public class BDTUGUI {
             JPanel Restore = new JPanel();
             tabbedPane.addTab("Restore", null, Restore, null);
             Restore.setLayout(null);
+            JPanel tablePanel = new JPanel();
+
+            tablePanel.setBackground(Color.WHITE);
+
+            tablePanel.setBounds(6, 107, 754, 170);
+
+            Restore.add(tablePanel);
+
+            tablePanel.setLayout(null);
 
             JPanel panel_2 = new JPanel();
             panel_2.setBackground(Color.WHITE);
@@ -101,27 +134,15 @@ public class BDTUGUI {
             lblLogo_1.setBounds(120, 6, 61, 44);
             panel_2.add(lblLogo_1);
 
-            String[] columnNames = {"FileName", "Date", "Type", "Device", "Restore"};
 
-            Object[][] data = {
-                    {"File1", "12/5/16", "Archive", "Mobile", "Restore"},
-                    {"File2", "12/5/16", "Session", "Computer", "Restore"},
-                    {"File3", "12/5/16", "Archive", "Mobile", "Restore"},
-                    {"File4", "12/5/16", "Session", "Tablet", "Restore"},
-            };
-
-            table = new JTable(data, columnNames);
-            table.setPreferredScrollableViewportSize(new Dimension(500, 50));
-            table.setFillsViewportHeight(true);
-            table.setBounds(123, 329, 519, -210);
-            Restore.add(table);
 
             JPanel Backup = new JPanel();
             tabbedPane.addTab("Backup", null, Backup, null);
             Backup.setLayout(null);
 
-            txtNameOfFile = new JTextField();
-            txtNameOfFile.setText("Name of File");
+
+            txtNameOfFile = new JTextField(10);
+            txtNameOfFile.setText("Name of Backup");
             txtNameOfFile.setBounds(30, 50, 200, 26);
             Backup.add(txtNameOfFile);
             txtNameOfFile.setColumns(10);
@@ -129,16 +150,17 @@ public class BDTUGUI {
             txtSourceFolderfile = new JTextField();
             txtSourceFolderfile.setText("Source Folder/File");
             txtSourceFolderfile.setBounds(30, 100, 200, 26);
+
             Backup.add(txtSourceFolderfile);
             txtSourceFolderfile.setColumns(10);
 
-            JButton btnNewButton_2 = new JButton("");
+            JButton btnNewButton_2 = new JButton("...");
             btnNewButton_2.setBounds(242, 100, 40, 29);
             Backup.add(btnNewButton_2);
 
             btnNewButton_2.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    FolderChooser();
+                    FolderChooser1();
                 }
             });
 
@@ -146,15 +168,18 @@ public class BDTUGUI {
             txtDestinationFolder.setText("Destination Folder");
             txtDestinationFolder.setBounds(30, 150, 200, 26);
             Backup.add(txtDestinationFolder);
-            txtDestinationFolder.setColumns(10);
+           // txtDestinationFolder.setColumns(10);
 
-            JButton btnNewButton_3 = new JButton("");
+
+
+
+            JButton btnNewButton_3 = new JButton("...");
             btnNewButton_3.setBounds(242, 150, 40, 29);
             Backup.add(btnNewButton_3);
 
             btnNewButton_3.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    FolderChooser();
+                    FolderChooser2();
                 }
             });
 
@@ -197,6 +222,11 @@ public class BDTUGUI {
             btnNewButton_1.setBounds(555, 297, 117, 37);
             Backup.add(btnNewButton_1);
 
+            btnNewButton_1.addActionListener(new ClearText());
+
+            btnNewButton.addActionListener(new RunBackupListener());
+
+
             JPanel panel_1 = new JPanel();
             panel_1.setBackground(Color.WHITE);
             panel_1.setBounds(480, 50, 259, 148);
@@ -210,8 +240,85 @@ public class BDTUGUI {
             JPanel Settings = new JPanel();
             tabbedPane.addTab("Settings", null, Settings, null);
 
+            String[] data = {};
+
+            list = new JList(data);
+            list.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+
+            list.setVisibleRowCount(5);
+            list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+            list.setBounds(154, 16, 444, 148);
+
+            DefaultListCellRenderer renderer = (DefaultListCellRenderer) list.getCellRenderer();
+            renderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+            list.setListData(BDTUArchival.archivalTable.keySet().toArray());
+            System.out.println(list.toString());
+
+            tablePanel.add(list);
+
+            JButton restoreSubmit = new JButton("Restore");
+
+            restoreSubmit.setBounds(322, 289, 117, 45);
+
+            Restore.add(restoreSubmit);
+
+            restoreSubmit.addActionListener(new RestoreListener());
+
+
+            JButton clearRestore = new JButton("Clear/Cancel");
+
+            clearRestore.setBounds(322, 338, 117, 29);
+
+            Restore.add(clearRestore);
+
 
         }
+
+        private class RestoreListener implements ActionListener{
+
+            public void actionPerformed(ActionEvent e) {
+
+               // int list2 = list.getSelectedIndex();
+                String restoreName = (String) list.getSelectedValue();
+                BDTURun.restore(restoreName);
+
+                list.setListData(BDTUArchival.archivalTable.keySet().toArray());
+
+            }
+        }
+
+        private class RunBackupListener implements ActionListener{
+
+            public void actionPerformed(ActionEvent e) {
+
+                if(txtNameOfFile.getText().equals("") | txtSourceFolderfile.getText().equals("")
+                        | txtDestinationFolder.getText().equals("") ){
+                    return;
+                }
+
+                String name = txtNameOfFile.getText();
+                String source = txtSourceFolderfile.getText();
+                String destination = txtDestinationFolder.getText();
+                BDTURun.archiveBackup(name, source, destination);
+
+                list.setListData(BDTUArchival.archivalTable.keySet().toArray());
+
+            }
+        }
+        private class ClearText implements ActionListener{
+
+            public void actionPerformed(ActionEvent e) {
+                    txtNameOfFile.setText("");
+                    txtSourceFolderfile.setText("");
+                    txtDestinationFolder.setText("");
+            }
+        }
+
     }
+
+
+
 
 

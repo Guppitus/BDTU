@@ -23,7 +23,7 @@ public class BDTURun {
      * @param destination destination filepath taken as a String
      */
 
-    public void archiveBackup(String backupName, String source, String destination){
+    public static void archiveBackup(String backupName, String source, String destination){
 
         //get source file size
         File sourceFile = new File(source);
@@ -46,7 +46,7 @@ public class BDTURun {
      * Restore Run method: restores backup file to source file
      * @param backupName name of backup taken as a String
      */
-    public void restore(String backupName){
+    public static void restore(String backupName){
 
         //get backup record from archive hash table
         BDTUArchival getBackup = (BDTUArchival)BDTUArchival.archivalTable.get(backupName);

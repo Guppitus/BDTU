@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SoftwareEngineeringProject:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SoftwareEngineeringProject_jar</output-path>
+    <root id="archive" name="SoftwareEngineeringProject.jar">
+      <element id="module-output" name="SoftwareEngineeringProject" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/commons-io-2.5/commons-io-2.5.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
